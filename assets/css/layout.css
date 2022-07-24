@@ -1,0 +1,7 @@
+body{
+    margin: 0px;
+    text-align: center;
+}
+.user-list{
+    list-style-position: inside;
+}
