@@ -1,13 +1,13 @@
 <div class="sign-up-form-container">
   <form action="/user/create-user" method="POST">
-    <label for="email_id">Email ID:</label>
-    <input type="email" name="email_id" id="email_id" />
+    <label for="email-id">Email ID:</label>
+    <input type="email" name="email_id" id="email-id" required/>
     <label for="password">Password:</label>
-    <input type="password" name="password" id="password" />
-    <label for="confirm_password">Confirm Password:</label>
-    <input type="password" name="confirm_password" id="confirm_password" />
+    <input type="password" name="password" id="password" required/>
+    <label for="confirm-password">Confirm Password:</label>
+    <input type="password" name="confirm_password" id="confirm-password" required/>
     <label for="name">Name:</label>
-    <input type="text" name="name" id="name" />
-    <button type="submit">Submit</button>
+    <input type="text" name="name" id="name" / required>
+    <button type="submit">Sign up</button>
   </form>
 </div>
