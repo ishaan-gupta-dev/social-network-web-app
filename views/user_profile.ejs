@@ -1,8 +1,5 @@
 <link rel="stylesheet" href="/css/user_profile.css">
 <h1>This is the user's profile page</h1>
-<h3>List of users =></h3>
-<ul class = "user-list">
-  <% for (let i = 1; i <= x; i++) {%>
-  <li>User <%=i%></li>
-  <%}%>
-</ul>
+
+<p> Welcome <%= user.name %>! </p>
+<p> <%= user.email_id %></p>

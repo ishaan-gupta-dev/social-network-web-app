@@ -1,3 +1,13 @@
 .header-container{
     margin: 5%;
 }
+ul{
+    list-style-position: inside;
+    list-style: none;
+}
+li{
+    display: inline;
+}
+h4{
+    display: inline;
+}
