@@ -1,16 +1,29 @@
-<link rel="stylesheet" href="/css/_header.css">
-<header class="header-container">
-    <!-- Page header -->
-    <ul>
-    <% if(locals.user) {%>
-        <li><button><a href="/"> Home </a></button></li>
-        <li> <h4><a href="/user/profile"> <%= user.name %> </a></h4> </li>
-        <li> <button><a href="/user/sign-out"> Sign Out </a></button></li>
-    <%} else{%>
-        <li><button><a href="/"> Home </a></button></li>
-        <li><button><a href="/user/sign-up "> Sign up </a></button></li>
-        <li><button><a href="/user/sign-in"> Sign in </a></buton></li>
-        
-    <%}%>
+<header id="header-container">
+  <!-- Page header -->
+  <nav>
+    <div class="mini-logo">
+      <p>
+        <a href='/'>
+          codeial
+        </a>
+      </p>
+    </div>
+    <div class="auth-links">
+      <ul>
+        <% if(locals.user) {%>
+        <li><a href="/"> Home </a></li>
+        <li>
+          <a href="/user/profile"> <%= user.name %> </a>
+        </li>
+        <li><a href="/user/sign-out"> Sign Out </a></li>
+        <%} else{%>
+        <li><a href="/"> Home </a></li>
+        <li><a href="/user/sign-up "> Sign up </a></li>
+        <li><a href="/user/sign-in"> Sign in </a>
+        </li>
+
+        <%}%>
     </ul>
+    </div>
+    </nav>
 </header>
