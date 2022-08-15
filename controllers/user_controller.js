@@ -1,12 +1,35 @@
 const User = require('../models/user');
-
+const Post = require('../models/post');
 // render the user profile page
 module.exports.profile = function (req, res) {
     // res.end("<h1>This page is for user's profile</h1>");
 
-    res.render('user_profile', {
-        title: "User's profile",
+    // res.render('user_profile', {
+    //     title: "User's profile",
+    // })
+
+    /* Post.find({}, function(err,posts){
+        return res.render('user_profile',{
+            title: "User's Profile",
+            posts: posts,
+        })
+    }) */
+
+    // populate the user of each post
+    Post.find({})
+    .populate('user')
+    .populate({
+        path: 'comment',
+        populate:{
+            path: 'user'
+        }
     })
+    .exec(function(err,posts){
+        return res.render('user_profile',{
+            title: "User's Profile",
+            posts: posts
+        });
+    });
 }
 
 // render the user sign up page
