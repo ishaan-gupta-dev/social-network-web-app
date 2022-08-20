@@ -1,0 +1,9 @@
+<p>
+    <h5>Comments</h5>
+</p>
+<p>
+  <%= comment.content %> <small> -<%= comment.user.name %></small> &emsp;
+  <% if(locals.user && locals.user.id == comment.user.id) { %>
+  <button><a href="/comment/destroy/<%=comment.id %>">delete comment</a></button>
+  <%}%>
+  </p>

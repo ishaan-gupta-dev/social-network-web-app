@@ -10,7 +10,3 @@ module.exports.home = function(req,res){
         title: 'Home'
     });
 }
-
-module.exports.playground = function(req,res){
-    return res.end('<h1>This page is for playground </h1> <button> Play with me </button>');
-}

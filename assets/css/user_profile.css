@@ -1,2 +1,12 @@
 body {
   background-color: lightblue; }
+
+#post-friend-cont {
+  display: flex; }
+  #post-friend-cont #feed-posts {
+    width: 70%;
+    padding: 10px; }
+  #post-friend-cont #user-friends {
+    width: 30%;
+    padding: 10px;
+    border-left: 1px solid darkgrey; }
