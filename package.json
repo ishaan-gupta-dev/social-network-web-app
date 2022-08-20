@@ -13,6 +13,7 @@
   "author": "Ishaan Gupta",
   "license": "ISC",
   "dependencies": {
+    "connect-flash": "^0.1.1",
     "connect-mongo": "^4.6.0",
     "cookie-parser": "^1.4.6",
     "ejs": "^3.1.8",
@@ -23,6 +24,7 @@
     "mongoose": "^6.5.0",
     "node-sass-middleware": "^1.0.1",
     "nodemon": "^2.0.19",
+    "noty": "^3.2.0-beta-deprecated",
     "passport": "^0.6.0",
     "passport-local": "^1.0.0"
   }

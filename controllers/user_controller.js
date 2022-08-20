@@ -1,6 +1,7 @@
 const User = require('../models/user');
 const Post = require('../models/post');
 // render the user profile page
+/* 
 module.exports.profile = function (req, res) {
     // res.end("<h1>This page is for user's profile</h1>");
 
@@ -8,15 +9,49 @@ module.exports.profile = function (req, res) {
     //     title: "User's profile",
     // })
 
-    /* Post.find({}, function(err,posts){
-        return res.render('user_profile',{
-            title: "User's Profile",
-            posts: posts,
-        })
-    }) */
+    // Post.find({}, function(err,posts){
+    //     return res.render('user_profile',{
+    //         title: "User's Profile",
+    //         posts: posts,
+    //     })
+    // })
 
     // populate the user of each post
-    Post.find({})
+    // Post.find({})
+    //     .populate('user')
+    //     .populate({
+    //         path: 'comment',
+    //         populate: {
+    //             path: 'user'
+    //         }
+    //     })
+    //     .exec(function (err, posts) {
+    //         User.find({}, function (err, users) {
+    //             return res.render('user_profile', {
+    //                 title: "User's Profile",
+    //                 posts: posts,
+    //                 all_users: users
+    //             });
+    //         });
+    //     }); 
+
+        // dummy code for using then
+        // Post.find({}).populate('comments').then(function());
+
+        // dummy code for using promises
+        
+        // let posts = Post.find({}).populate('comments').exec();
+
+        // posts.then(); 
+        
+} 
+*/
+
+// using async await
+module.exports.profile = async function (req, res) {
+
+    try{
+        let posts = await Post.find({})
         .populate('user')
         .populate({
             path: 'comment',
@@ -24,15 +59,19 @@ module.exports.profile = function (req, res) {
                 path: 'user'
             }
         })
-        .exec(function (err, posts) {
-            User.find({}, function (err, users) {
-                return res.render('user_profile', {
-                    title: "User's Profile",
-                    posts: posts,
-                    all_users: users
-                });
-            });
-        });
+
+    let users = await User.find({});
+
+    return res.render('user_profile', {
+        title: "User's Profile",
+        posts: posts,
+        all_users: users
+    });
+    }catch(err){
+        console.log(`Error message- ${err} \n cannot load the posts!`);
+        return;
+    }
+    
 }
 
 module.exports.profile2 = function (req, res) {
@@ -49,7 +88,7 @@ module.exports.update = function (req, res) {
         User.findByIdAndUpdate(req.params.id, req.body, /* OR {name: req.body.name, email_id; req.body.email_id} */ function (err, user) {
             return res.redirect('back');
         });
-    }else{
+    } else {
         return res.status(401).send('Unauthorized');
     }
 }
@@ -105,16 +144,19 @@ module.exports.createUser = function (req, res) {
 
 // sign in and create a session for the user
 module.exports.createSession = function (req, res) {
+    req.flash('success','Logged in successfully');
     return res.redirect('/user/profile');
 }
 
 // sign out and destroy the session for the user
-
 module.exports.destroySession = function (req, res) {
     req.logout(function (err) {
         if (err) {
             console.log(`Error! ${err} Cannot sign out the user`);
         }
     });
+    req.flash('success','You have logged out');
     return res.redirect('/');
+    // you can do this, but not a good way, that is why we create a middleware
+    //return res.redirect('/',{flash: {success:""}});
 }
