@@ -1,8 +1,8 @@
 <p>
-  <li>
+  <li id="post-<%= post._id %>">
     <p><%= post.content %> &nbsp; <small> -<%= post.user.name %> </small> &emsp;
       <% if(locals.user && locals.user.id == post.user.id) { %>
-      <button><a href="/post/destroy/<%= post.id %>">delete post</a></button>
+      <button><a class="delete-post-button" href="/post/destroy/<%= post._id %>">delete post</a></button>
       <%}%>
       </p>
     </li>
