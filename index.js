@@ -36,8 +36,12 @@ app.use(express.urlencoded());
 // use static files (css,js)
 app.use(express.static('./assets'));
 
+// make the uploads path available to the browser
+app.use('/uploads', express.static(__dirname + '/uploads'));
+
 // use the layouts
 app.use(expresslayouts);
+
 
 // extract style and script from subpages into the layout
 app.set('layout extractStyles', true);
