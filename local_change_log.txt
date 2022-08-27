@@ -1,0 +1,16 @@
+Files changed=>
+
+25-08-2022 => 
+1) new folders in routes and controllers
+2) routes/index.js
+
+26-08-2022=>
+1) routes/api/v1/posts.js
+2) npm i passport-jwt
+3) index.js
+4) config>passport-jwt-strategy
+5) npm i jsonwebtoken
+6) controllers/api/v1/users_api.js
+7) routes/api/v1/users.js
+7) routes/api/v1/index.js
+// npm i express-jwt

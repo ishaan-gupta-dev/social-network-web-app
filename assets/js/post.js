@@ -41,7 +41,7 @@
           </div>
       <form action="/comment/create" method="POST">
         <input type="text" name="content" placeholder="Type here to add comment..." required />
-        <input type="hidden" name="post" value=" ${post._id}" />
+        <input type="hidden" name="post" value="${post._id}" />
         <input type="submit" name="" id="" value="Add Comment" />
       </form>
         </div>
