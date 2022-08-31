@@ -1,5 +1,8 @@
 const Comment = require('../models/comment');
 const Post = require('../models/post');
+const commentMailer = require('../mailers/comments_mailer');
+const queue = require('../config/kue');
+const commentEmailWorker = require('../workers/comment_email_worker');
 
 /* 
 module.exports.createComment = function (req, res) {
@@ -30,6 +33,7 @@ module.exports.createComment = function (req, res) {
 */
 
 // using async await
+/* 
 module.exports.createComment = async function (req, res) {
     try {
         console.log(req.body);
@@ -49,7 +53,60 @@ module.exports.createComment = async function (req, res) {
         return;
     }
 
+} 
+*/
+
+// using ajax 
+module.exports.createComment = async function (req, res) {
+    try {
+        let post = await Post.findById(req.body.post);
+        if (post) {
+            let comment = await Comment.create({
+                content: req.body.content,
+                user: req.user._id,
+                post: req.body.post
+            });
+            post.comment.push(comment);
+            post.save();
+
+            // no longer used, removed from documentation
+            // comment = await comment.populate('user','name email_id').exec(populate());
+            comment = await comment.populate('user','name email_id');
+
+            // mail the user that the comment has been published
+            // commentMailer.newComment(comment);
+
+            // putting the job inside comment email queue 
+            let job = queue.create('emails',comment).save (function(err){
+                if(err){
+                    console.log(`Error in sending to the comment email queue\nError code-${err}`);
+                    return;
+                };
+                console.log(`Job enqueued! Job id-${job.id}`);
+            });
+
+            // ajax
+            if(req.xhr){
+                // comment = await comment.populate('user','name').execPopulate();
+                return res.status(200).json({
+                    data: {
+                        comment:comment
+                    },
+                    message: "Post created!"
+                });
+            }
+
+            req.flash("success","Comment published!");
+            res.redirect('back');
+        }
+    } catch (err) {
+        console.log(`Error ${err} \nCannot find the post to create the comment`);
+        req.flash('error', err);
+        return;
+    }
+
 }
+
 
 /* 
 module.exports.destroyComment = function (req, res) {

@@ -19,3 +19,5 @@ installation =>
 17) npm install passport-google-oauth
 18) npm install crypto-js
 19) npm install nodemailer
+20) npm install kue
+21) install redis using WSL.
