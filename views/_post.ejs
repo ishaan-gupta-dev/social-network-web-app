@@ -1,28 +1,39 @@
-<p>
+<div class="post-card">
   <li id="post-<%= post._id %>">
     <p><%= post.content %> &nbsp; <small> -<%= post.user.name %> </small> &emsp;
       <% if(locals.user && locals.user.id == post.user.id) { %>
       <button><a class="delete-post-button" href="/post/destroy/<%= post._id %>">delete post</a></button>
       <%}%>
-      </p>
-    </li>
-  </p>
+      <span>
+        <small>
+          <% if(locals.user){ %>
+            <button><a class="toggle-like-button" data-likes="<%= post.likes.length %> " href="/likes/toggle/?id=<%=post._id%>&type=Post">
+                <%= post.likes.length %> Likes
+            </a></button>
+          <% }else{%>
+      <%= post.likes.length %> Likes
+      <% } %>
+      </small>
+      </span>
+    </p>
+  </li>
   <div class="post-comments">
     <div class="post-comments-list-cont">
       <ul id="post-comments-<%= post._id %>">
-      <% for(comment of post.comment) { %>
+        <% for(comment of post.comment) { %>
 
-  <li>
-    <%- include('_comment') -%>
-  </li>
-  <% } %>
-  </ul>
+        <li>
+          <%- include('_comment') -%>
+        </li>
+        <% } %>
+      </ul>
+    </div>
+    <% if(locals.user) {%>
+    <form action=" /comment/create" method="POST">
+      <input type="text" name="content" placeholder="Type here to add comment..." required />
+      <input type="hidden" name="post" value="<%= post.id %>" />
+      <input type="submit" name="" id="" value="Add Comment" />
+    </form>
+    <%}%>
   </div>
-  <% if(locals.user) {%>
-<form action=" /comment/create" method="POST">
-  <input type="text" name="content" placeholder="Type here to add comment..." required />
-  <input type="hidden" name="post" value="<%= post.id %>" />
-  <input type="submit" name="" id="" value="Add Comment" />
-</form>
-<%}%>
-        </div>
+</div>

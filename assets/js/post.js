@@ -28,24 +28,33 @@
   // method to create a post in DOM
 
   let newPostDom = function (post) {
-    return $(`<p>
-        <li id="post-${post._id}">
-          <p>${post.content} &nbsp; <small> -${post.user.name} </small> &emsp;
-            <button><a class="delete-post-button" href="/post/destroy/${post._id}">delete post</a></button>
-            </p>
-        </p>
+    return $(`
+            <div class="post-card">
+              <li id="post-${post._id}">
+                <p>${post.content} &nbsp; <small> -${post.user.name} </small> &emsp;
+                  <button><a class="delete-post-button" href="/post/destroy/${post._id}">delete post</a></button>
+                  <span>
+                    <small>
+                        <button><a class="toggle-like-button" data-likes="0" href="/likes/toggle/?id=${post._id}&type=Post">
+                          0 Likes 
+                        </a></button>  
+                    </small>
+                  </span>
+                </p>
+              </li>
         <div class="post-comments">
           <div class="post-comments-list-cont">
             <ul id="post-comments-${post._id}">
         </ul>
           </div>
-      <form action="/comment/create" method="POST">
+      <form id="post-${ post._id }-comments-form" action="/comment/create" method="POST">
         <input type="text" name="content" placeholder="Type here to add comment..." required />
         <input type="hidden" name="post" value="${post._id}" />
         <input type="submit" name="" id="" value="Add Comment" />
       </form>
         </div>
-        </li>`)
+        </div>
+        `)
 
   }
 

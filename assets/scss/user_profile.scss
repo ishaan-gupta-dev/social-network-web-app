@@ -1,18 +1,34 @@
-body{
-    background-color: lightblue;
+body {
+  background-color: lightblue;
 }
 
-#post-friend-cont{
-    display: flex;
-    #feed-posts{
-        width: 70%;
-        padding: 10px;
-    }
+#post-friend-cont {
+  display: flex;
+  #feed-posts {
+    width: 70%;
+    padding: 10px;
+  }
 
-    #user-friends{
-        width: 30%;
-        padding: 10px;
-        border-left: 1px solid darkgrey;
-        // height: 100%;
-    }
+  #user-friends {
+    width: 30%;
+    padding: 10px;
+    border-left: 1px solid darkgrey;
+    // height: 100%;
+  }
+}
+
+#post-list-cont ul {
+  list-style-type: none;
+  list-style-position: inside;
+  margin: 0;
+  padding: 0;
+}
+.post-card {
+  border: 2px solid black;
+  margin: 5px;
+  padding: 10px;
+}
+.toggle-like-button {
+  text-decoration: none;
+  color: red;
 }

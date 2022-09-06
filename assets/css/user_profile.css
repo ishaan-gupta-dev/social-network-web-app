@@ -10,3 +10,18 @@ body {
     width: 30%;
     padding: 10px;
     border-left: 1px solid darkgrey; }
+
+#post-list-cont ul {
+  list-style-type: none;
+  list-style-position: inside;
+  margin: 0;
+  padding: 0; }
+
+.post-card {
+  border: 2px solid black;
+  margin: 5px;
+  padding: 10px; }
+
+.toggle-like-button {
+  text-decoration: none;
+  color: red; }
