@@ -21,3 +21,5 @@ installation =>
 19) npm install nodemailer
 20) npm install kue
 21) install redis using WSL.
+22) npm install socket.io
+

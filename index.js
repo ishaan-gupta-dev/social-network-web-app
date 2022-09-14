@@ -17,6 +17,14 @@ const sassMiddleware = require('node-sass-middleware');
 const flash = require('connect-flash');
 const customMiddleware = require('./config/middleware');
 
+// setup the chat server to be used with socket.io
+const chatServer = require('http').Server(app);
+const chatSockets = require('./config/chat_sockets').chatSockets(chatServer);
+const chatServerPort = 5000;
+chatServer.listen(chatServerPort);
+console.log(`Chat server listening on port ${chatServerPort}`);
+
+
 // set the seetings for sass and use it
 app.use(
     sassMiddleware({
@@ -116,6 +124,7 @@ app.use(customMiddleware.setFlash);
 // use express routers
 // const router = require('./routes');
 // app.use('/',router);
+
 app.use('/', require('./routes'));
 
 app.listen(port, function (err) {

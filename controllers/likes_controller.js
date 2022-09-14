@@ -6,7 +6,7 @@ const Comment = require('../models/comment');
 module.exports.toggleLike = async function (req, res) {
     try {
 
-        // URL will be like => /like/toggle/?id=abcdef&type=Post
+        // URL will be like => /likes/toggle/?id=abcdef&type=Post
         let likeable;
         let deleted = false;
 
