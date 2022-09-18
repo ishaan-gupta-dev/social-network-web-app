@@ -1,0 +1,19 @@
+1) To connmect to machine =>
+sudo ssh -i AWS/codeial-prod.pem ubuntu@ec2-44-202-231-223.compute-1.amazonaws.com
+
+2) how mongodb got installed for me =>
+0
+
+I was facing a libssl1.1 issue when trying to install mongo-db in Pop!_OS 22.04 LTS (or Ubuntu 22.04 LTS).
+
+As @stephen-kitt mentioned libssl1.x is an obsolete package. So you need to manually install the required package.
+
+Go to this page
+Find the exact version of libssl for example libssl1.1.1
+wget http://archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1-1ubuntu2.1~18.04.20_amd64.deb (use your version url respectively)
+Then install with sudo dpkg -i libssl1.1_1.1.1-1ubuntu2.1~18.04.20_amd64.deb
+Hope this helps others who are trying to do the same.
+
+The issue is referenced on Github, all credit goes to @feisalramar.
+
+3)

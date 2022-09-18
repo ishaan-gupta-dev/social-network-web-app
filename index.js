@@ -1,6 +1,10 @@
 const express = require('express');
+const env = require('./config/environment');
+const logger = require('morgan');
+const path = require('path');
 const app = express();
 const port = 8000;
+require('./config/view-helpers')(app);
 const cookieParser = require('cookie-parser');
 const expresslayouts = require('express-ejs-layouts');
 const db = require('./config/mongoose');
@@ -25,17 +29,20 @@ chatServer.listen(chatServerPort);
 console.log(`Chat server listening on port ${chatServerPort}`);
 
 
-// set the seetings for sass and use it
+// set the settings for sass and use it
+if(env.name == 'development'){
 app.use(
     sassMiddleware({
-      src: './assets/scss',
-      dest: './assets/css',
+    //   src: './assets/scss',
+    src: path.join(__dirname,env.asset_path,'/scss'),
+    //   dest: './assets/css',
+    dest: path.join(__dirname,env.asset_path,'/css'),
       debug: true,
       outputStyle: 'extended',
       prefix: '/css',
     })
   );
-  
+}
 
 // use cookie parser
 app.use(cookieParser());
@@ -44,10 +51,13 @@ app.use(cookieParser());
 app.use(express.urlencoded());
 
 // use static files (css,js)
-app.use(express.static('./assets'));
+// app.use(express.static('./assets'));
+app.use(express.static(env.asset_path));
 
 // make the uploads path available to the browser
 app.use('/uploads', express.static(__dirname + '/uploads'));
+
+app.use(logger(env.morgan.mode,env.morgan.options));
 
 // use the layouts
 app.use(expresslayouts);
@@ -79,7 +89,8 @@ app.use(session({
 // mongoStore is used to store the session cookie in db
 app.use(session({
     name: 'codeial',
-    secret: 'somethingsecret',
+    // secret: 'somethingsecret',
+    secret: env.session_cookie_key,
     saveUninitialized: false,
     resave: false,
     cookie: {

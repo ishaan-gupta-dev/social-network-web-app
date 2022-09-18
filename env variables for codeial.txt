@@ -1,0 +1,13 @@
+[Environment]::SetEnvironmentVariable('CODEIAL_ENVIRONMENT', 'production', [EnvironmentVariableTarget]::Machine)
+[Environment]::SetEnvironmentVariable('CODEIAL_ASSET_PATH', './assets', [EnvironmentVariableTarget]::Machine)
+[Environment]::SetEnvironmentVariable('CODEIAL_SESSION_COOKIE_KEY', 'hskn7bBa7SMRefu8vuMdsE6Fo0n8bsXR', [EnvironmentVariableTarget]::Machine)
+[Environment]::SetEnvironmentVariable('CODEIAL_DB', 'codeial_production', [EnvironmentVariableTarget]::Machine)
+[Environment]::SetEnvironmentVariable('CODEIAL_GMAIL_USERNAME', 'codeial.development.ishaan@gmail.com', [EnvironmentVariableTarget]::Machine)
+[Environment]::SetEnvironmentVariable('CODEIAL_GMAIL_PASSWORD', 'scebyxmyntysgthp', [EnvironmentVariableTarget]::Machine)
+[Environment]::SetEnvironmentVariable('GOOGLE_CLIENT_ID', '868309701555-nrtu8drd3s75a9vd3gaud1o2iorhus4a.apps.googleusercontent.com', [EnvironmentVariableTarget]::Machine)
+[Environment]::SetEnvironmentVariable('GOOGLE_CLIENT_SECRET', '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', [EnvironmentVariableTarget]::Machine)
+[Environment]::SetEnvironmentVariable('GOOGLE_CALLBACK_URL', 'http://codeial.com/user/auth/google/callback', [EnvironmentVariableTarget]::Machine)
+[Environment]::SetEnvironmentVariable('CODEIAL_JWT_SECRET', '2Bt3zCFAx4yQ1lddI8YMtglmRoDWFFfk', [EnvironmentVariableTarget]::Machine)
+
+// gulp
+[Environment]::SetEnvironmentVariable('CODEIAL_ASSET_PATH', './public/assets', [EnvironmentVariableTarget]::Machine)
