@@ -23,3 +23,6 @@ installation =>
 21) install redis using WSL.
 22) npm install socket.io
 
+// redis-server for redis server start
+
+
