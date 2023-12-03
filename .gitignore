@@ -1,5 +1,5 @@
-/node_modules
-/aws
-/env variables for codeial.txt
-/env variables for codeial.txt~
-/google_oauth_credentials.json
+node_modules/
+aws/
+env variables for codeial.txt/
+env variables for codeial.txt~/
+google_oauth_credentials.json/
